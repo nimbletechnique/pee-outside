@@ -15,7 +15,7 @@ set :deploy_to, "/users/home/peeoutside/rails/peeoutside"
 # set :scm, :subversion
 
 # repo is localhost on this deployment
-set :repository,  "file:///home/peeoutside/svn/repo"
+set :repository,  "svn+ssh://peeoutside@8.17.86.51/home/peeoutside/svn/repo"
 set :svn_user, 'peeoutside'
 set :svn_password, 'p330uts1d3'
 

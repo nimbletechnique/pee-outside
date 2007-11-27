@@ -30,9 +30,9 @@ test:
 
 # mysql.gluedtomyseat.com
 production:
-  host: mysql.peeoutside.org
+  host: 8.17.86.51
   adapter: mysql
   database: pee_production
-  username: peedb
-  password: h&nn0n
+  username: peeoutside
+  password: p330uts1d3
   socket: /tmp/mysql.sock
