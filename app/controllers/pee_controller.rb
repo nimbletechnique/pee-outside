@@ -195,6 +195,8 @@ class PeeController < ApplicationController
   end
   
   def records_for_entries(entries)
+    return nil if entries.empty?
+    
     cookie = get_site_cookie
     # get the voting records for these entries
     entry_ids = entries.map { |entry| entry.id }
