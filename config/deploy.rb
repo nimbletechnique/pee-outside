@@ -8,15 +8,16 @@ set :checkout, "export"
 # via the :deploy_to variable:
 # set :deploy_to, "/var/www/#{application}"
 
-set :deploy_to, "/home/peeoutside/peeoutside.org"
+set :deploy_to, "/users/home/peeoutside/rails/peeoutside"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 # set :scm, :subversion
 
-set :repository,  "http://svn.gluedtomyseat.com/peeoutside"
+# repo is localhost on this deployment
+set :repository,  "file:///home/peeoutside/svn/repo"
 set :svn_user, 'peeoutside'
-set :svn_password, 'peeoutsideok'
+set :svn_password, 'p330uts1d3'
 
 role :app, 'peeoutside@peeoutside.org'
 role :web, 'peeoutside@peeoutside.org'
