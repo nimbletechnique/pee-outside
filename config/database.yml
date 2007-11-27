@@ -32,7 +32,7 @@ test:
 production:
   host: localhost
   adapter: mysql
-  database: pee_production
+  database: peeoutside_production
   username: peeoutside
   password: qu1KupT1JingX1Y
   socket: /tmp/mysql.sock
