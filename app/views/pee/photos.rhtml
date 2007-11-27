@@ -1,0 +1,28 @@
+<%= render(:partial=>"photo_links") %>
+<h2>Photos</h2>
+Pages: <%= pagination_links(@entry_pages) %>
+<p/>
+<table cellspacing='5' cellpadding='5' border='1'>
+<% for entry in @entries %>
+	<tr >
+		<td align="left" width="20%">
+			<a href="/pee/photo/<%=entry.id%>">
+				<img src="/pee/image?id=<%= entry.small_thumbnail.id %>" align="left" border="0"/>
+			</a>
+		</td>
+		<td valign="top">
+			<h3><%= h entry.title %></h3>
+			<div id="entry_rating_<%= entry.id %>">
+				<%= render :partial=>'rating', :object=>entry %>
+			</div>
+			
+			<i><%= format_time entry.created %></i><br/>
+			
+			Comments: 
+			<%= link_to entry.comments.size, :action=>:photo, :id=>entry %>
+			<br/>
+			
+		</td>
+	</tr>
+<% end %>
+</table>

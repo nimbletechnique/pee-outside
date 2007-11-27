@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Pee Outside Admin Application</title>
+		<style type="text/css" media="screen">
+			html,body,td {
+				font-family: Verdana;
+				font-size: 12px;
+			}
+			a, a:visited {
+				color: blue;
+			}
+		</style>
+		<%= stylesheet_link_tag "scaffold" %>
+	</head>
+	<body>
+		<%= link_to "Back to Pee Outside", {:controller=>"/"}, :confirm=>'Are you sure you want to leave the admin area?' %> |
+		<%= link_to "Welcome Message", :controller=>:admin, :action=>:welcome_message %> |
+		<%= link_to "Approve Submissions", :controller=>:admin %> |
+		<%= link_to "Signups", :controller=>:admin, :action=>:signups %> |
+		<%= link_to "News", :controller=>:admin, :action=>:news %> |
+		<%= link_to "FAQs", :controller=>:admin, :action=>:faqs %> |
+		<%= link_to "Log Out", :controller=>:admin, :action=>:logout %>
+		<hr/>
+		
+		<% if flash[:notice] %>
+			<p style="color: green"><%= flash[:notice] %></p> 
+		<% end %>
+		<% if flash[:error] %>
+			<p style="color: red"><%= flash[:error] %></p> 
+		<% end %>
+
+		
+		<%= yield :layout %>
+	</body>
+</html>
+

@@ -1,0 +1,23 @@
+body {
+	background: #818388;	
+}
+
+#content {
+	margin-top: 22px;
+	padding: 10px 15px 10px 40px;
+	
+	width: 489px;
+	height: 588px;
+	overflow: auto;
+}
+
+#middle {
+	border: solid #000 10px;
+}
+
+#footer {
+
+	width: 100%;
+	padding-top: 20px;
+	text-align: center;
+}

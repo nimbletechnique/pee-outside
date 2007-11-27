@@ -1,0 +1,41 @@
+<h1>Contact Us</h1>
+<p>
+	Got a question or comment or just general feedback?  We'd love to hear from you! 
+</p>
+<p>
+	<%= error_messages_for :site_contact %>
+	<% form_for :site_contact do |form| %>
+		<table cellspacing='5'>
+			<tr>
+				<td>
+					Category
+				</td>
+				<td>
+					<%= form.select :category,[
+						"General Question",
+						"Problem with the Site",
+						"Media Coverage"
+					]
+					%>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Email
+				</td>
+				<td>
+					<%= form.text_field :email, :size=>32 %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Your Message
+				</td>
+				<td>
+					<%= form.text_area :message, :cols=>30, :rows=>10 %>
+				</td>
+			</tr>
+		</table>
+		<%= submit_tag "Send Feedback"%>
+	<% end %>
+</p>

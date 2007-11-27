@@ -1,0 +1,24 @@
+<%= error_messages_for :signup %>
+<% form_for :signup, :url=>{:action=>:signup, :controller=>:pee} do |form| %>
+	<table cellspacing='10' cellpadding='10'>
+		<tr>
+			<td>First Name</td>
+			<td><%= form.text_field :first_name%></td>
+		</tr>
+		<tr>
+			<td>Last Name</td>
+			<td><%= form.text_field :last_name%></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><%= form.text_field :email%></td>
+		</tr>
+		<tr>
+			<td>Pledge</td>
+			<td><%= form.check_box :pledged %> 
+				I pledge to use one of the ideas above, once a day
+			</td>
+		</tr>
+	</table>
+	<%= submit_tag "Sign up!" %>
+<% end %>

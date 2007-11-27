@@ -1,0 +1,41 @@
+<h2>
+	<%= link_to "FAQs", :action=>:faqs %> :: 
+	<%= "Create FAQ" unless params[:id] %>
+	<%= @faq.title if @faq %>
+</h2>
+
+<%= javascript_include_tag "fckeditor/fckeditor"%>
+
+<%= error_messages_for :faq %>
+
+<% form_for :faq do |form| %>
+	<table>
+		<tr>
+			<td>Title</td>
+			<td><%= form.text_field :title %>
+		</tr>
+		<tr>
+			<td>Position</td>
+			<td><%= form.text_field :position, :size=>5 %>
+		</tr>
+		<tr>
+			<td>Content</td>
+			<td>
+				<%= form.text_area :body, :rows=>10, :cols=>50 %>
+				<%= javascript_tag "
+					var oFCKeditor = new FCKeditor( 'faq_body' ) ;
+					oFCKeditor.BasePath = '/javascripts/fckeditor/' ;
+					oFCKeditor.Height	= 300 ;
+					oFCKeditor.Width = 800;
+					oFCKeditor.ReplaceTextarea() ;
+				"%>	
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<%= submit_tag "Update FAQ" if params[:id]%>
+	<%= submit_tag "Create FAQ" unless params[:id]%>
+<% end %>
+
+
+

@@ -1,0 +1,13 @@
+<h3>
+	<%= link_to newsitem.title, :action=>:newsitem, :id=>newsitem %>
+</h3>
+<i><%= format_time newsitem.created %></i><br/>
+Comments: 
+<%= link_to newsitem.comments.size, :action=>:newsitem, :id=>newsitem %>
+<br/>
+
+<%= h newsitem.location %>
+<p/>
+<%= newsitem.body %>
+<p/>
+<hr/>

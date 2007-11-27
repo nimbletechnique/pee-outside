@@ -1,0 +1,8 @@
+<h2><%= link_to "News Items", :action=>:news %> :: <%= h @newsitem.title%></h2>
+<i><%= @newsitem.created %></i><br/>
+<%= @newsitem.location %><br/>
+<p>
+	<%= @newsitem.body %>
+</p>
+<hr/>
+<%= link_to "Edit", :action=>:create_news, :id=>@newsitem %>

@@ -1,0 +1,19 @@
+<div id='<%= "comment-#{comment.id}" %>'>
+<% if string_not_empty(comment.name) or string_not_empty(comment.location) %>
+	<strong>
+		<% if string_not_empty(comment.name) %>
+			<%= comment.name %>
+			<% if string_not_empty(comment.location) %>
+				, 
+			<% end %>
+		<% end %>
+		<%= comment.location %>
+	</strong>
+	<br/>
+<% end %>
+<i><%= format_time comment.created %></i><br/>
+<%= h(comment.data) %>
+</div>
+<br/>
+<hr/>
+<br/>

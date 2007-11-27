@@ -1,0 +1,10 @@
+<h2>
+	<%= link_to "FAQs", :action=>:faqs %> :: 
+	<%= @faq.title  %>
+</h2>
+
+<p>
+	<%= @faq.body %>
+</p>
+<hr/>
+<%= link_to "Edit", :action=>:create_faq, :id=>@faq %>

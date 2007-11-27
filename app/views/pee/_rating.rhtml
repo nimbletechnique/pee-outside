@@ -1,0 +1,36 @@
+<div id='rating_error_<%= rating.id %>' style='color:red;'></div>
+<div id='rating_success_<%= rating.id %>' style='color:green;'></div>
+<table>
+	<tr>
+		<td>
+			<% 5.times do |idx| %>
+				<% 
+					is_on = rating.rating >= (idx + 1)
+					on_img = image_path 'ratings/star-on.png'
+					off_img = image_path 'ratings/star-off.png'
+					
+				%>
+				<%= link_to_remote(image_tag(
+					is_on ? on_img : off_img,
+					:onMouseOver=> "this.src='#{on_img}'",
+					:onMouseOut=> is_on ? "this.src='#{on_img}'" : "this.src='#{off_img}'",
+					:style=>"cursor: pointer;",
+					:border=>0), 
+						:url=>{
+						:action=>:rate_entry,
+						:id=>rating,
+						:page=>params[:page],
+						:rating=>idx+1,
+						:back_to_entry=>@link_back_to_entry
+						}
+					)
+				%>
+			<% end %>
+		</td>
+		<td>
+			&#160;
+			Avg: <%= sprintf("%0.2f", rating.rating) %>, <%= rating.number_ratings %> ratings
+		</td>
+	</tr>
+</table>
+

@@ -1,0 +1,15 @@
+<h2>Entries Waiting to be Approved</h2>
+<% if @entries.empty? %>
+	There are no entries waiting to be approved
+<% end %>
+<ul>
+	<% for entry in @entries %>
+  		<li>
+			<h3><%= h entry.title %> - <%= h entry.created %></h3>
+			<img src="/admin/image?id=<%= entry.small_thumbnail.id %>" /><br/>
+			<%= link_to "Approve" , :action=>:approve, :id=>entry %> |
+			<%= link_to "Reject" , :action=>:reject, :id=>entry %>
+			<hr/>
+		</li>
+	<% end %>
+</ul>

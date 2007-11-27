@@ -1,0 +1,34 @@
+<h2>News Items</h2>
+
+<%= link_to "Create news item", :action=>:create_news%>
+<p/>
+
+<% if @newsitems.empty? %>
+	There are no news items right now
+<% else %>
+	<table border="1" cellpadding='5' cellspacing='5'>
+		<tr>
+			<th>Title</th>
+			<th>Location</th>
+			<th>Date</th>
+			<th>Action</th>
+		</tr>
+		<% for newsitem in @newsitems %>
+			<tr>
+				<td>
+					<%= link_to h(newsitem.title), :action=>:newsitem, :id=>newsitem%>
+				</td>
+				<td>
+					<%= h newsitem.location %>
+				</td>
+				<td>
+					<%= h newsitem.created %>
+				</td>
+				<td>
+					<%= link_to "Delete", {:action=>:delete_news, :id=>newsitem}, :confirm=>'Are you sure?' %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+

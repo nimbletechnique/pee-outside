@@ -1,0 +1,15 @@
+rating_id = "entry_rating_#{@entry.id}"
+page.replace_html(rating_id, :partial=>'rating', :object=>@entry)
+
+unless @rating_error
+  rating_success_id = "rating_success_#{@entry.id}"
+  page[rating_id].visual_effect :highlight,  :startcolor => "#88ff88"
+  page.replace_html(rating_success_id, "Thanks for voting!")
+  page[rating_success_id].visual_effect :blind_up, :delay=>1
+else
+  rating_error_id = "rating_error_#{@entry.id}"
+  page.replace_html(rating_error_id, @rating_error)
+  page[rating_id].visual_effect :shake
+  page[rating_error_id].visual_effect :blind_up, :delay=>1
+end
+

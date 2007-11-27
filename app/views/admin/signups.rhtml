@@ -1,0 +1,19 @@
+<h2>All Signups</h2>
+<table border='1' cellspacing='5' cellpadding='5'>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email</th>
+		<th>Date</th>
+		<th>Pledged</th>
+	</tr>
+	<% for signup in @signups %>
+		<tr>
+			<td><%= h signup.first_name%></td>
+			<td><%= h signup.last_name %></td>
+			<td><%= mail_to signup.email %></td>
+			<td><%= h signup.created %></td>
+			<td><%= signup.pledged? ? "yes" : "no" %>
+		</tr>
+	<% end %>
+</table>

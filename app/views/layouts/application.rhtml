@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+
+<%= stylesheet_link_tag "styles" %>
+<%= stylesheet_link_tag "scaffold" %>
+<%= javascript_include_tag :defaults %> 
+
+<link rel="alternate" type="application/rss+xml" title="PeeOutside.org News Feed" href="/rss/news"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Pee Outside - Save millions of gallons of water a day!</title>
+<!--[if lt IE 7]>
+	<script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
+	<link rel="stylesheet" href="/images/ie6-styles.css" media="screen" type="text/css"/>
+<![endif]-->
+
+	</head>
+		<div id="container">
+			<div id="left">
+				<p> </p>
+			</div>		
+			
+			<div id="middle">	
+				
+				<div id="left-nav">
+					<a href="/"><%= image_tag "logo-sign.png"%></a>
+					
+					<br>
+					<br>
+					<%= link_to (image_tag("news-sign.png"), :controller=>:pee, :action=>:news)%>
+					
+					<br>
+					<br>
+					<%= link_to (image_tag("faqs-sign.png"), :controller=>:pee, :action=>:faq)%>
+
+					<br>
+					<br>
+					<%= link_to (image_tag("photo-sign.png"), :controller=>:pee, :action=>:photos)%>
+
+					<br>
+					<br>
+					<%= link_to (image_tag("sign-up-sign-right.png"), :controller=>:pee, :action=>:signup)%>
+				</div>
+				
+				<div id="main">
+						<div id="header">
+							<a href="/"><%= image_tag "logo.png"%></a>
+						</div>
+						
+						<div id="content">
+
+							<% if flash[:notice] %>
+								<span style="color: green; font-size: 14; font-weight: strong;"><%= flash[:notice] %></span><p/>
+							<% end %>
+							<% if flash[:error] %>
+							<span style="color: red; font-size: 14; font-weight: strong;"><%= flash[:error] %></span><p/>
+							<% end %>
+
+							<%= yield :layout %>
+						</div>					
+				</div>				
+			</div>
+			
+			<div id="right">				
+			</div>
+		</div>		
+		<div id="footer">
+			© 2007 Pee Outside 
+			<% if session[:user] %>
+				| 
+				<%= link_to "Admin", :controller=>:admin  %>
+			<% end %>
+			|
+			<%= link_to "Contact Us" , :controller=>:pee, :action=>:contact_us %>
+			| 
+			<%= link_to "Privacy Policy", :controller=>:pee, :action=>:privacy %>
+			
+			<!--[if lt IE 7]>
+			<br/>You know, you should really upgrade your browser...
+			<br/>
+				To view this site in all it's Web 2.0 glory, try out the latest <a href="http://www.microsoft.com/windows/products/winfamily/ie/default.mspx">Internet Explorer</a>, <a href="http://www.firefox.com/">Firefox</a>, or even <a href="http://www.apple.com/safari/">Safari</a>.
+		<![endif]-->
+		</div>
+	</body>
+</html>

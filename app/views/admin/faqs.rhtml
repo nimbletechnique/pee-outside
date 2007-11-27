@@ -1,0 +1,33 @@
+<h2>FAQs</h2>
+
+<%= link_to "Create an FAQ", :action=>:create_faq%>
+<p/>
+
+<% if @faqs.empty? %>
+	There are no FAQs at this time.
+<% else %>
+	<table border="1" cellpadding='5' cellspacing='5'>
+		<tr>
+			<th>Title</th>
+			<th>Position</th>
+			<th>Date</th>
+			<th>Action</th>
+		</tr>
+		<% for faq in @faqs %>
+			<tr>
+				<td>
+					<%= link_to h(faq.title), :action=>:faq, :id=>faq %>
+				</td>
+				<td>
+					<%= faq.position %>
+				</td>
+				<td>
+					<%= h faq.created %>
+				</td>
+				<td>
+					<%= link_to "Delete", {:action=>:delete_faq, :id=>faq}, :confirm=>'Are you sure?' %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

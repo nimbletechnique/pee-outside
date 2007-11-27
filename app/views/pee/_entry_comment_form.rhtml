@@ -1,0 +1,22 @@
+<% form_remote_for :comment, 
+		:url=>{:controller=>:pee, :action=>:add_entry_comment, :id=>@entry},
+		:before=>'Form.Element.disable("comment-submit")'  do |f| %>
+	<table cellspacing='5'>
+		<tr>
+			<td>Name</td>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<td>Location</td>
+			<td><%= f.text_field :location %></td>
+		</tr>
+		<tr>
+			<td><strong>Comment</strong></td>
+			<td><%= f.text_area :data, :cols=>30, :rows=>5 %></td>
+		</tr>
+	</table>
+	<strong>bold = required</strong>
+	<p/>
+	<%= submit_tag "Submit Comment", :id=>'comment-submit'%>
+<% end %>
+<br/>

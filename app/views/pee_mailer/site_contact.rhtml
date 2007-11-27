@@ -1,0 +1,7 @@
+Hooray! Someone left feedback.
+
+<%= "Category: #{@site_contact.category}" if @site_contact.category %>
+<%= "Email   : #{@site_contact.email}" unless @site_contact.email.empty? %>
+<%= "#{@site_contact.message}\n\n" if @site_contact.message %>
+
+- The Management

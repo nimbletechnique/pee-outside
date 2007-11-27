@@ -1,0 +1,17 @@
+<%= javascript_include_tag "fckeditor/fckeditor"%>
+<p>
+	<%= @welcome_message.body %>
+</p>
+<hr/>
+<% form_for :welcome_message do |form| %>
+	<%= form.text_area :body, :rows=>10, :cols=>50 %>
+	<%= javascript_tag "
+		var oFCKeditor = new FCKeditor( 'welcome_message_body' ) ;
+		oFCKeditor.BasePath = '/javascripts/fckeditor/' ;
+		oFCKeditor.Height	= 300 ;
+		oFCKeditor.Width = 800;
+		oFCKeditor.ReplaceTextarea() ;
+	"%>	
+	<p/>
+	<%= submit_tag "Update Welcome Message" %>
+<% end %>

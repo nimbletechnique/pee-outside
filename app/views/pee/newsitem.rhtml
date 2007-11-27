@@ -1,0 +1,31 @@
+<h1>
+	<%= link_to "News", :action=>:news %>
+	::
+	<%= @newsitem.title %>
+</h1>
+
+<i><%= format_time @newsitem.created %></i><br/>
+<%= h @newsitem.location %>
+<p/>
+<%= @newsitem.body %>
+<p/>
+
+<h3>Comments</h3>
+<hr/>
+<%= link_to_remote "Add Comment",
+ 	:url=>{:action=>'show_news_comment_form', :id=>@newsitem},
+	:method=>:get%>
+<p/>
+<div id='comment_form' style="display: none;">
+</div>
+
+<div id='comments'>
+	<% if @comments.empty? %>
+	There are no comments for this news item yet.
+	<% end %>
+	
+	<%= render :partial=>'comment', :collection=>@comments %>
+</div>
+
+
+

@@ -1,0 +1,3 @@
+UploadMailer#upload_received
+
+Find me in app/views/upload_mailer/upload_received.rhtml

@@ -1,0 +1,2 @@
+page.replace_html 'comment_form', :partial=>'entry_comment_form'
+page['comment_form'].visual_effect :slide_down, :duration=>0.25

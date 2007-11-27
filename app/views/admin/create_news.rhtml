@@ -1,0 +1,42 @@
+<h2>
+	<%= link_to "News Items", :action=>:news %> :: 
+	<%= "Create News Item" unless params[:id] %>
+	<%= @newsitem.title if params[:id] %>
+</h2>
+
+<%= javascript_include_tag "fckeditor/fckeditor"%>
+
+<%= error_messages_for :newsitem%>
+
+<% form_for :newsitem do |form| %>
+	<table>
+		<tr>
+			<td>Title</td>
+			<td><%= form.text_field :title %>
+		</tr>
+		<tr>
+			<td>Location</td>
+			<td><%= form.text_field :location %>
+		</tr>
+		<tr>
+			<td>Content</td>
+			<td>
+				<%= form.text_area :body, :rows=>10, :cols=>50 %>
+				<%= javascript_tag "
+					var oFCKeditor = new FCKeditor( 'newsitem_body' ) ;
+					oFCKeditor.BasePath = '/javascripts/fckeditor/' ;
+					oFCKeditor.Height	= 300 ;
+					oFCKeditor.Width = 800;
+					oFCKeditor.ReplaceTextarea() ;
+				"%>	
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<%= submit_tag "Update news item" if params[:id]%>
+	<%= submit_tag "Create news item" unless params[:id]%>
+	
+	
+<% end %>
+
+

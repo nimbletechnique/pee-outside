@@ -1,0 +1,5 @@
+page.replace_html 'comments', :partial=>'comment', :collection=>@comments
+page['comment_form'].visual_effect :slide_up, :duration=>0.25
+if @added_comment
+  page["comment-#{@added_comment.id}"].visual_effect :highlight, :duration=>3
+end 

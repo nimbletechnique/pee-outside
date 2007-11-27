@@ -1,0 +1,18 @@
+<p>
+Login yourself before you wreck yourself.
+</p>
+<% form_tag :action=>:login do %>	
+<table cellpadding='2' cellspacing='2'>
+	<tr>
+		<td>Username:</td>
+		<td><%= text_field_tag :username%></td>
+	</tr>
+	<tr>
+		<td>Password:</td>
+		<td><%= password_field_tag :password%></td>
+	</tr>
+</table>
+<p>
+	<%= submit_tag "Wreck" %>
+</p>
+<% end %>

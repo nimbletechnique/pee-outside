@@ -1,0 +1,48 @@
+<%= render :partial=>"pee/photo_links"%>
+
+<h2>Picture Submission</h2>
+<%= error_messages_for :entry %>
+<%= error_messages_for :upload %>
+
+<% form_for (:upload, :url=>{:action=>:save_upload}, :html=>{:multipart=>true}) do |form| %>
+<table cellpadding='15' cellspacing='15'>
+	<% fields_for :entry do |entry| %>
+		<tr>
+			<td>Title:</td>
+			<td>
+				<%= entry.text_field :title %>
+			</td>
+		</tr>
+	<% end %>
+	<tr>
+		<td>
+			File:
+		</td>
+		<td>
+			<%= form.file_field :uploaded_data %>
+		</td>
+	</tr>
+</table>
+<%= submit_tag "Upload File" %>
+<% end %>
+
+<p>
+	By submitting the form, you agree to the following:
+</p>
+<p>
+	I declare that any photograph submitted by me to Peeoutsite.org is my own original creation and work, and does not infringe the rights (including copyright) of any other person or entity.
+</p>
+<p>
+	I understand that Peeoutside.org will not return any physical materials (including any photographs) submitted by me to Peeoutside.org. 
+</p>
+<p>
+	I grant to Peeoutside.org a non-exclusive licence in all media throughout the world, to use and authorize the use of any photograph submitted. 
+</p>
+<p>
+	I warrant that there are no restrictions that prevent me from providing Peeoutside.org with the photograph(s) and agreeing to these terms, and that the consent of no other person is required to enable Peeoutside.org to exercise the licence above. 
+</p>
+<p>
+	I release and indemnify Peeoutside.org, its assignees, and licensees from and against any claims arising from any breach of this warranty and the exercise of the rights granted herein.
+</p>
+
+

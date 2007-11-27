@@ -1,0 +1,13 @@
+<h1>
+	News
+	<%= render :partial=>'newsrsslink'%>
+</h1>
+Pages: <%= pagination_links(@newsitem_pages) %>
+<p/>
+<% if @newsitems.empty? %>
+	No news yet! Check back soon.
+<% else %>
+	<% for newsitem in @newsitems %>
+		<%= render :partial=>'newsitem', :object=>newsitem %>
+	<% end %>
+<% end %>

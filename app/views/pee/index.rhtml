@@ -1,0 +1,15 @@
+<i><%= pee_stats %></i>
+<p/>
+<%= @welcome_message.body %>
+<% unless @news_items.empty? %>
+	<br/>
+	<h3>
+		Recent News
+		<%= render :partial=>'newsrsslink'%>
+	</h3>
+	<hr/>
+	<br/>
+	<% for newsitem in @news_items %>
+		<%= render :partial=>'newsitem', :object=>newsitem %>
+	<% end %>
+<% end %>

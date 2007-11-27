@@ -1,0 +1,30 @@
+<%= render(:partial=>"photo_links") %>
+<h2>
+	<%= link_to "Photos", :controller=>:pee, :action=>:photos %> :: 
+	<%= @entry.title %>
+</h2>
+<% @link_back_to_entry = true %>
+<div id="entry_rating_<%= @entry.id %>">
+	<%= render :partial=>'rating', :object=>@entry %>
+</div>
+<br/><br/>
+<a href="/pee/image/<%=@entry.upload.id%>" target="_blank">
+	<img src="/pee/image?id=<%= @entry.small_thumbnail.id %>"  border="0"/>
+</a>
+<p/>
+<h3>Comments</h3>
+<hr/>
+<%= link_to_remote "Add Comment",
+ 	:url=>{:action=>'show_entry_comment_form', :id=>@entry},
+	:method=>:get%>
+<p/>
+<div id='comment_form' style="display: none;">
+</div>
+
+<div id='comments'>
+	<% if @comments.empty? %>
+	There are no comments for this entry yet.
+	<% end %>
+	
+	<%= render :partial=>'comment', :collection=>@comments %>
+</div>

@@ -1,0 +1,7 @@
+<h1>Frequently Asked Questions</h1>
+<% for faq in @faqs %>
+<p>
+	<strong>Q. <%=h faq.title %></strong><br/>
+	PO. <%= faq.body %>
+</p>
+<% end %>

@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("PeeOutside.org News")
+    xml.link("http://peeoutside.org/rss/news")
+    xml.description("Recent news from PeeOutside.org")
+    xml.language('en-us')
+      for newsitem in @newsitems
+        xml.item do
+          xml.title(newsitem.title)
+          xml.category('General News')           
+          xml.description(newsitem.body)           
+          xml.pubDate(newsitem.created.strftime("%a, %d %b %Y %H:%M:%S %z"))
+          xml.link('http://peeoutside.org/pee/newsitem/'  + newsitem.id.to_s)
+          xml.guid('http://peeoutside.org/pee/newsitem/' + newsitem.id.to_s)
+        end
+      end
+  }
+}
