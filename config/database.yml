@@ -35,4 +35,4 @@ production:
   database: pee_production
   username: peeoutside
   password: qu1KupT1JingX1Y
-  socket: /tmp/mysql.sock=
+  socket: /tmp/mysql.sock
