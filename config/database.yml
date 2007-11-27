@@ -30,7 +30,7 @@ test:
 
 # mysql.gluedtomyseat.com
 production:
-  host: 8.17.86.51
+  host: localhost
   adapter: mysql
   database: pee_production
   username: peeoutside
