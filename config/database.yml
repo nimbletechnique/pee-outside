@@ -34,5 +34,5 @@ production:
   adapter: mysql
   database: pee_production
   username: peeoutside
-  password: p330uts1d3
+  password: qu1KupT1JingX1Y
   socket: /tmp/mysql.sock
