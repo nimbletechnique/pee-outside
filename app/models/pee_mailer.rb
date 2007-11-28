@@ -5,7 +5,7 @@ class PeeMailer < ActionMailer::Base
     @subject    = "Comment submitted for entry: #{entry.title}"
     @body       = {:entry=>entry, :comment=>comment}
     @recipients = 'peeoutside@lists.gluedtomyseat.com'
-    @from       = ''
+    @from       = 'gluedtomyseat@gmail.com'
     @sent_on    = sent_at
     @headers    = {}
   end
@@ -15,7 +15,7 @@ class PeeMailer < ActionMailer::Base
     @subject    = "Comment submitted for news item: #{newsitem.title}"
     @body       = {:newsitem=>newsitem, :comment=>comment}
     @recipients = 'peeoutside@lists.gluedtomyseat.com'
-    @from       = ''
+    @from       = 'gluedtomyseat@gmail.com'
     @sent_on    = sent_at
     @headers    = {}
   end
@@ -24,7 +24,7 @@ class PeeMailer < ActionMailer::Base
     @subject    = 'Signup received at peeoutside.org'
     @body       = {:signup=>signup}
     @recipients = 'peeoutside@lists.gluedtomyseat.com'
-    @from       = ''
+    @from       = 'gluedtomyseat@gmail.com'
     @sent_on    = sent_at
     @headers    = {}
   end
@@ -33,7 +33,7 @@ class PeeMailer < ActionMailer::Base
     @subject    = "Pee Outside Upload Received"
     @body       = {}
     @recipients = 'peeoutside@lists.gluedtomyseat.com'
-    @from       = ''
+    @from       = 'gluedtomyseat@gmail.com'
     @sent_on    = sent_at
     @headers    = {}
     if upload
@@ -48,7 +48,7 @@ class PeeMailer < ActionMailer::Base
     @subject    = 'Site feedback for peeoutside.org'
     @body       = {:site_contact=>site_contact}
     @recipients = 'peeoutside@lists.gluedtomyseat.com'
-    @from       = ''
+    @from       = 'gluedtomyseat@gmail.com'
     @sent_on    = sent_at
     @headers    = {}
   end
