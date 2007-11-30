@@ -74,7 +74,11 @@ class PeeController < ApplicationController
       @signup = Signup.new(params[:signup])
       if @signup.save
         # send the notification email
-        PeeMailer.deliver_signup_received(@signup)
+        begin
+          PeeMailer.deliver_signup_received(@signup)
+        rescue
+          logger.error "Could not deliver email: {$!}"
+        end
 
         flash[:notice] = 'Thank you for signing up!'
         redirect_to :action=>:index
@@ -153,7 +157,11 @@ class PeeController < ApplicationController
       @comment.newsitem = @newsitem
       if @comment.save
         #notify
-        PeeMailer.deliver_news_comment_submitted(@newsitem, @comment)
+        begin
+          PeeMailer.deliver_news_comment_submitted(@newsitem, @comment)
+        rescue
+          logger.error "Could not deliver email: {$!}"
+        end
         @added_comment = @comment
       end
       return redirect_to(:action=>:newsitem, :id=>@newsitem) unless request.xhr?
@@ -171,7 +179,11 @@ class PeeController < ApplicationController
       @comment.entry = @entry
       if @comment.save
         # send the notification email
-        PeeMailer.deliver_entry_comment_submitted(@entry, @comment)
+        begin
+          PeeMailer.deliver_entry_comment_submitted(@entry, @comment)
+        rescue
+          logger.error "Could not deliver email: {$!}"
+        end
         @added_comment = @comment
       end
       return redirect_to(:action=>:photo, :id=>@entry) unless request.xhr?

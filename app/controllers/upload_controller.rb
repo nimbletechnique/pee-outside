@@ -47,7 +47,11 @@ class UploadController < ApplicationController
               @entry.save!
 
               # send the notification email
-              PeeMailer.deliver_upload_received(@upload)
+              begin
+                PeeMailer.deliver_upload_received(@upload)
+              rescue
+                logger.error "Could not deliver email: {$!}"
+              end
 
               flash[:notice] = 'Thank you for your upload. After it is approved, it will be available on the live site'
               return redirect_to :action=>:index
