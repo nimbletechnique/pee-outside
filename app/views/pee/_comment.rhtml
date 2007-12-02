@@ -15,5 +15,9 @@
 <%= h(comment.data) %>
 </div>
 <br/>
+<% if is_logged_in? %>
+  <%= link_to "Delete above comment", :controller=>:admin, :action=>:delete_comment, :id=>comment %>
+  <p/>
+<% end %>
 <hr/>
 <br/>

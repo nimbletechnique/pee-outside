@@ -2,6 +2,18 @@ class AdminController < ApplicationController
   
   before_filter :authorize, :except=>:login
   
+  def delete_comment
+    comment = Comment.find_by_id(params[:id])
+    
+    newsitem = comment.newsitem
+    entry = comment.entry
+    
+    comment.destroy
+    
+    redirect_to :controller=>:pee, :action=>:newsitem, :id=>newsitem if newsitem
+    redirect_to :controller=>:pee, :action=>:photo, :id=>entry if entry
+  end
+  
   def welcome_message
     @welcome_message = WelcomeMessage.find :first
     if request.post?
@@ -129,12 +141,6 @@ class AdminController < ApplicationController
   def logout
     session[:user] = nil
     redirect_to :controller=>:admin
-  end
-  
-  private
-  
-  def authorize
-    redirect_to :controller=>:admin, :action=>:login unless session[:user]
   end
   
 end
