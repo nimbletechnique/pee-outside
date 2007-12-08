@@ -4,7 +4,7 @@ class PeeController < ApplicationController
   
   def index
     @welcome_message = WelcomeMessage.find(:first)
-    @news_items = Newsitem.find(:all, :order=>'newsitems.created desc', :limit=>1, :include=>:comments)
+    @news_items = Newsitem.find(:all, :order=>'newsitems.created desc', :limit=>2, :include=>:comments)
   end
   
   def rate_entry

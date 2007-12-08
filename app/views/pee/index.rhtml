@@ -10,6 +10,12 @@
 	<hr/>
 	<br/>
 	<% for newsitem in @news_items %>
-		<%= render :partial=>'newsitem', :object=>newsitem %>
+    <h3>
+    	<%= link_to newsitem.title, :action=>:newsitem, :id=>newsitem %>
+    </h3>
+    <i><%= format_time newsitem.created %></i><br/>
+    Comments: 
+    <%= link_to newsitem.comments.size, :action=>:newsitem, :id=>newsitem %>
+    <br/><br/>
 	<% end %>
 <% end %>
