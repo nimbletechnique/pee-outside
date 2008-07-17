@@ -3,6 +3,8 @@
 
 require(File.join(File.dirname(__FILE__), 'config', 'boot'))
 
+require 'rubygems/gem_runner'
+
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
