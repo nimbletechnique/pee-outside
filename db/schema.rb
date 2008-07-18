@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 21) do
 
   create_table "newsitems", :force => true do |t|
     t.column "title",    :string
-    t.column "body",     :text
+    t.column "body",     :text,     :limit => 255
     t.column "created",  :datetime
     t.column "location", :string
   end
@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(:version => 21) do
   add_index "newsitems", ["created"], :name => "index_newsitems_on_created"
 
   create_table "rating_records", :force => true do |t|
-    t.column "cookie",   :string,  :default => "", :null => false
+    t.column "cookie",   :string,  :null => false
     t.column "entry_id", :integer
   end
 
-  add_index "rating_records", ["cookie"], :name => "index_rating_records_on_cookie"
   add_index "rating_records", ["entry_id"], :name => "index_rating_records_on_entry_id"
+  add_index "rating_records", ["cookie"], :name => "index_rating_records_on_cookie"
 
   create_table "sessions", :force => true do |t|
     t.column "session_id", :string
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(:version => 21) do
     t.column "updated_at", :datetime
   end
 
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
 
   create_table "signups", :force => true do |t|
     t.column "first_name", :string
@@ -80,10 +80,10 @@ ActiveRecord::Schema.define(:version => 21) do
 
   create_table "uploads", :force => true do |t|
     t.column "name",         :string
-    t.column "data",         :binary
+    t.column "data",         :binary,   :limit => 5242880
     t.column "content_type", :string
     t.column "created",      :datetime
-    t.column "entry_id",     :integer,  :null => false
+    t.column "entry_id",     :integer,                     :default => 0, :null => false
   end
 
   create_table "welcome_messages", :force => true do |t|
