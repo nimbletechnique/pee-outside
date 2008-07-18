@@ -12,6 +12,6 @@ production:
   host: localhost
   adapter: mysql
   database: peeoutside_production
-  username: peeoutside
-  password: qu1KupT1JingX1Y
+  username: root
+  password: 
   socket: /var/run/mysqld/mysqld.sock
