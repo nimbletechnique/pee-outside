@@ -147,7 +147,7 @@ class AdminController < ApplicationController
 
   private
   
-  def credentials_match?(params)
+  def credentials_match?
     ["username", "password"].all? { |x| credentials[x] == params[x] }
   end
   
