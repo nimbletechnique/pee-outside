@@ -152,7 +152,7 @@ class AdminController < ApplicationController
   end
   
   def credentials
-    @credentials ||= YAML.load_file(File.expand_path("config/admin.yml"), RAILS_ROOT)
+    @credentials ||= YAML.load_file(File.expand_path("config/admin.yml", RAILS_ROOT))
   end
   
   
