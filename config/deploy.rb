@@ -27,5 +27,5 @@ namespace :deploy do
 end
 
 after 'deploy:finalize_update' do
-  # run "cp #{deploy_to}/shared/database.yml #{latest_release}/config"
+  run "cp #{deploy_to}/shared/admin.yml #{latest_release}/config"
 end

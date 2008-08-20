@@ -1,3 +1,5 @@
+require 'yaml'
+
 class AdminController < ApplicationController
   
   before_filter :authorize, :except=>:login
@@ -131,7 +133,7 @@ class AdminController < ApplicationController
   
   def login
     if request.post?
-      if "admin" == params[:username] and "admin" == params[:password] 
+      if credentials_match?
         session[:user] = params[:username]
         redirect_to :controller=>:admin, :action=>:index
       end
@@ -142,5 +144,17 @@ class AdminController < ApplicationController
     session[:user] = nil
     redirect_to :controller=>:admin
   end
+
+  private
+  
+  def credentials_match?(params)
+    ["username", "password"].all? { |x| credentials[x] == params[x] }
+  end
+  
+  def credentials
+    @credentials ||= YAML.read_file(File.expand_path("config/admin.yml"), RAILS_ROOT)
+  end
+  
+  
   
 end
