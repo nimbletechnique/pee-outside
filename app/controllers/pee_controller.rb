@@ -32,7 +32,7 @@ class PeeController < ApplicationController
       # flash[:error] = 'You have already voted on this entry'
     end
     unless request.xhr?
-      return redirect_to :action=>:photo, :id=>@entry if params[:back_to_entry]
+      return redirect_to(:action=>:photo, :id=>@entry) if params[:back_to_entry]
       redirect_to :action=>:photos, :page=>params[:page]
     end
   end
@@ -56,12 +56,12 @@ class PeeController < ApplicationController
   end
   
   def news
-    @newsitem_pages, @newsitems = paginate(
-      :newsitems,
-      :order=>'newsitems.created desc',
-      :include=>[:comments],
-      :per_page=>4
-    )
+    @newsitems = Newsitem.paginate({
+      :order => "newsitems.created desc",
+      :include => [:comments],
+      :per_page => 4,
+      :page => params[:page]
+    })
   end
   
   def newsitem
@@ -123,14 +123,13 @@ class PeeController < ApplicationController
   
   def photos
     cookie = get_site_cookie
-    # get the entries
-    @entry_pages, @entries = paginate(
-      :entries,
-      :conditions=>['entries.approved = true'],
-      :order=>'entries.created desc',
-      :include=>[:comments,:small_thumbnail],
-      :per_page=>4
-    )
+    @entries = Entry.paginate({
+      :conditions => { :approved => true },
+      :order => "entries.created desc",
+      :include => [:comments, :small_thumbnail],
+      :per_page => 4,
+      :page => params[:page]
+    })
     
     # get the voting records for these entries
     @records = records_for_entries(@entries)

@@ -27,7 +27,7 @@ class AdminController < ApplicationController
   end
   
   def index
-    @entries = Entry.find(:all, :conditions=>"approved = false", :order=>"created desc")
+    @entries = Entry.find(:all, :conditions => { :approved => false }, :order=>"created desc")
   end
 
   def news

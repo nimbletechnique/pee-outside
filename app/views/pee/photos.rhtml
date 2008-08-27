@@ -1,6 +1,6 @@
 <%= render(:partial=>"photo_links") %>
 <h2>Photos</h2>
-Pages: <%= pagination_links(@entry_pages) %>
+Pages: <%= will_paginate @entries %>
 <p/>
 <table cellspacing='5' cellpadding='5' border='1'>
 <% for entry in @entries %>

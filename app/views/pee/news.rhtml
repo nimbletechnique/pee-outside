@@ -2,7 +2,7 @@
 	News
 	<%= render :partial=>'newsrsslink'%>
 </h1>
-Pages: <%= pagination_links(@newsitem_pages) %>
+Pages: <%= will_paginate @newsitems %>
 <p/>
 <% if @newsitems.empty? %>
 	No news yet. Check back soon.
