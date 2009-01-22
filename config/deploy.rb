@@ -1,14 +1,16 @@
 set :application, "peeoutside"
-set :user, "collin"
-set :host, "#{user}@peeoutside.org"
+set :user, "deploy"
+set :host, "#{user}@peeoutside.nimbletechnique.com"
 
 set :scm, :git
-set :repository, "git@github.com:oculardisaster/pee-outside.git"
+set :repository, "git@github.com:nimbletechnique/pee-outside.git"
 
 set :deploy_to, "/var/www/apps/#{application}"
 set :runner, user
 set :ssh_options, { :forward_agent => true }
 set :branch, "master"
+
+set :use_sudo, false
 
 role :app, "#{host}"
 role :web, "#{host}"
@@ -26,6 +28,9 @@ namespace :deploy do
   end
 end
 
-after 'deploy:finalize_update' do
-  run "cp #{deploy_to}/shared/admin.yml #{latest_release}/config"
+after 'deploy:update_code' do
+  ["database", "admin"].each do |name|
+    run "cp #{deploy_to}/shared/#{name}.yml #{release_path}/config"
+  end
 end
+
