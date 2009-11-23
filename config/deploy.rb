@@ -1,6 +1,6 @@
 set :application, "peeoutside"
 set :user, "deploy"
-set :host, "#{user}@peeoutside.nimbletechnique.com"
+set :host, "#{user}@68.68.97.194"
 
 set :scm, :git
 set :repository, "git@github.com:nimbletechnique/pee-outside.git"
