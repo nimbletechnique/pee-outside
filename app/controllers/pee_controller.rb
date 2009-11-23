@@ -95,19 +95,12 @@ class PeeController < ApplicationController
       logger.debug "Http modified since: #{request.env["HTTP_IF_MODIFIED_SINCE"]}"
       minTime = Time.rfc2822(request.env["HTTP_IF_MODIFIED_SINCE"]) rescue nil
       logger.debug "Mintime is #{minTime}"
-      if minTime and @upload.created <= minTime
-        # use the cached version
-        logger.debug "Instructing browser to use cache"
-        render_text '', '304 Not Modified'
-      else
-        logger.debug "Sending image data"
-        send_data(
-          @upload.data, 
-          :filename=>@upload.name, 
-          :type=>@upload.content_type,
-          :disposition=>'inline'
-        )
-      end
+      send_data(
+        @upload.data, 
+        :filename=>@upload.name, 
+        :type=>@upload.content_type,
+        :disposition=>'inline'
+      )
     end
   end
   
