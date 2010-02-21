@@ -1,6 +1,6 @@
 set :application, "peeoutside"
 set :user, "deploy"
-set :host, "#{user}@68.68.97.194"
+set :host, "#{user}@nimbletechnique.com"
 
 set :scm, :git
 set :repository, "git@github.com:nimbletechnique/pee-outside.git"
@@ -17,14 +17,17 @@ role :web, "#{host}"
 role :db,  "#{host}", :primary => true
 
 namespace :deploy do
-  desc "Restarting mod_rails with restart.txt"
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{current_path}/tmp/restart.txt"
+  
+  task :start do
+    run "unicorn_rails --daemonize --env production --config-file #{deploy_to}/shared/unicorn.conf"
   end
-
-  [:start, :stop].each do |t|
-    desc "#{t} task is a no-op with mod_rails"
-    task t, :roles => :app do ; end
+  
+  task :stop do
+    run "kill `cat #{deploy_to}/shared/pids/unicorn.pid`"
+  end
+  
+  task :restart do
+    run "kill -USR2 `cat #{deploy_to}/shared/pids/unicorn.pid`"
   end
 end
 
