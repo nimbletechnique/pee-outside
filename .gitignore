@@ -5,3 +5,4 @@ tmp/**/*
 admin.yml
 database.yml
 *.sql
+*.swp

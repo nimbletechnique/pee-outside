@@ -17,19 +17,27 @@ role :web, "#{host}"
 role :db,  "#{host}", :primary => true
 
 namespace :deploy do
-  
-  task :start do
-    run "unicorn_rails --daemonize --env production --config-file #{deploy_to}/shared/unicorn.conf"
+  task :start, :roles => [:web, :app] do
+    run "cd #{deploy_to}/current && nohup thin -C #{deploy_to}/shared/production_config.yml start"
   end
-  
-  task :stop do
-    run "kill `cat #{deploy_to}/shared/pids/unicorn.pid`"
+ 
+  task :stop, :roles => [:web, :app] do
+    run "cd #{deploy_to}/current && nohup thin -C #{deploy_to}/shared/production_config.yml stop"
   end
-  
-  task :restart do
-    run "kill -USR2 `cat #{deploy_to}/shared/pids/unicorn.pid`"
+ 
+  task :restart, :roles => [:web, :app] do
+    deploy.stop
+    deploy.start
+  end
+ 
+  # This will make sure that Capistrano doesn't try to run rake:migrate (this is not a Rails project!)
+  task :cold do
+    deploy.update
+    deploy.start
   end
 end
+
+
 
 after 'deploy:update_code' do
   ["database", "admin"].each do |name|
